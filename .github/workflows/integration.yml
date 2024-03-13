@@ -13,7 +13,7 @@ jobs:
           runs-on: ubuntu-latest
           container: 
               image: ghcr.io/epitech/
-              coding-style-checker:latest
+              coding-style-checker: latest
           
           steps:
 
@@ -34,3 +34,27 @@ jobs:
                     exit 1
                   fi
                   exit 0
+
+jobs:
+
+  coding-style:
+
+  compile:
+      runs-on: ubuntu-latest
+      steps:
+
+          - name: Checkout GH repo
+            uses: actions/checkout@master
+
+          - name: Compile repository
+            run: make
+
+          - name: Check binary presence
+            run: |
+              if [ ! -f ./swapupcase ]; then
+                  echo "::error file=swapupcase,
+                  title=Binary error:: Binary not found"
+                  exit 1
+              fi
+              exit 0
+              
