@@ -35,26 +35,21 @@ jobs:
                   fi
                   exit 0
 
-jobs:
+    compile:
+        runs-on: ubuntu-latest
+        steps:
 
-  coding-style:
+            - name: Checkout GH repo
+              uses: actions/checkout@master
 
-  compile:
-      runs-on: ubuntu-latest
-      steps:
+            - name: Compile repository
+              run: make
 
-          - name: Checkout GH repo
-            uses: actions/checkout@master
-
-          - name: Compile repository
-            run: make
-
-          - name: Check binary presence
-            run: |
-              if [ ! -f ./swapupcase ]; then
-                  echo "::error file=swapupcase,
-                  title=Binary error:: Binary not found"
-                  exit 1
-              fi
-              exit 0
-              
+            - name: Check binary presence
+              run: |
+                if [ ! -f ./swapupcase ]; then
+                    echo "::error file=swapupcase,
+                    title=Binary error:: Binary not found"
+                    exit 1
+                fi
+                exit 0
