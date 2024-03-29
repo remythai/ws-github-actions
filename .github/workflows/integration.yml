@@ -1,4 +1,4 @@
-name: simon_est_pede
+name: continous-integration
 
 on:
     push:
